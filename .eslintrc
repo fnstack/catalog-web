@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-console": 1,
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "space-infix-ops": "off"
+  }
+}

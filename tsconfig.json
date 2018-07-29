@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    },
+    "outDir": "build",
+    "module": "commonjs",
+    "target": "es6",
+    "lib": ["es5", "es2015", "dom", "dom.iterable", "scripthost", "esnext.asynciterable"],
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "jsx": "react",
+    "moduleResolution": "node"
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules", "build", "dist", "typings/main", "typings/main.d.ts"],
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "forceIsolatedModules": true,
+    "reportFiles": ["src/**/*.{ts,tsx}"]
+  },
+  "allowSyntheticDefaultImports": true
+}
