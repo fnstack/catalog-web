@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { App } from 'app';
+import { Routes } from 'routes';
 
 import './sass/app.scss';
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<React.Fragment><Routes /></React.Fragment>, document.getElementById('root'));

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Menu, Icon, Button } from 'antd';
+import {Link} from 'react-router-dom';
 
 interface SideBarProps {
   style?: any;
@@ -43,7 +44,7 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
           <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
         </Button>
           <Menu.Item key="1">
-            <Icon type="switcher" /> <span>Product categories</span>
+            <Link to="/product-categories"><Icon type="switcher" /> <span>Product categories</span></Link>
           </Menu.Item>
           <Menu.Item key="2">
             <Icon type="tag-o" /> <span>Product Brands</span>
