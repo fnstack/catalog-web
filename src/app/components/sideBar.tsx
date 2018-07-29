@@ -28,19 +28,20 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
     const { style, className } = this.props;
 
     return (
-      <div style={{ width: 256 }}>
-        <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-          <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
-        </Button>
+      <div style={{ width: 256, height: '100vh' }}>
+
         <Menu
           onClick={this.handleClick}
-          style={{ ...style}}
+          style={{ ...style, height: '100%' }}
           defaultSelectedKeys={['1']}
           mode="inline"
           theme="dark"
           className={className}
           inlineCollapsed={this.state.collapsed}
         >
+         <Button type="primary" onClick={this.toggleCollapsed} style={{ margin: 8 }}>
+          <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
+        </Button>
           <Menu.Item key="1">
             <Icon type="switcher" /> <span>Product categories</span>
           </Menu.Item>
