@@ -1,4 +1,10 @@
 import * as React from 'react';
+import { Button } from 'antd';
+import { List } from 'antd';
+const data = [
+  'Nom:',
+  'Description:',
+];
 
 class ProductCategories extends React.Component {
   public render() {
@@ -6,6 +12,37 @@ class ProductCategories extends React.Component {
     return (
       <div>
         <h1>Catégorie des produits</h1>
+          <div>
+            <Button type="primary">Ajouter</Button>
+          </div>
+          <div>
+    
+    <List
+      
+      
+      bordered
+      dataSource={data}
+      renderItem={item => (<List.Item>{item}</List.Item>)}
+    />
+    
+    <List
+      
+      
+      
+      bordered
+      dataSource={data}
+      renderItem={item => (<List.Item>{item}</List.Item>)}
+    />
+    
+    <List
+      
+      
+      
+      bordered
+      dataSource={data}
+      renderItem={item => (<List.Item>{item}</List.Item>)}
+    />
+  </div>
       </div>
     );
   }
