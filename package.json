@@ -4,7 +4,7 @@
   "description": "HSE dev team test project",
   "main": "index.tsx",
   "scripts": {
-    "prestart": "npm run lint && node tools/startMessage.js",
+    "prestart": "node tools/startMessage.js",
     "start": "webpack-dev-server --config webpack.dev.js --mode development",
     "prelint": "esw --ext .js, webpack.*.* tools --color",
     "lint": "tslint -t stylish src/**/*.ts{,x}",
