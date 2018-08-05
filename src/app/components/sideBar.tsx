@@ -47,11 +47,13 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
             <Link to="/product-categories"><Icon type="switcher" /> <span>Product categories</span></Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Icon type="tag-o" /> <span>Product Brands</span>
+          
+          <Link to="/product-brands">  <Icon type="tag-o" /> <span>Product Brands</span></Link>
           </Menu.Item>
           <Menu.Item key="3">
           <Link to="/products"><Icon type="appstore-o" /> <span>Products</span></Link>
           </Menu.Item>
+        
         </Menu>
       </div>
     );
