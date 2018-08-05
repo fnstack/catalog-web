@@ -7,9 +7,9 @@ import { Products } from 'products';
 class App extends React.Component {
   public render() {
     return (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', width: '100vw' }}>
         <SideBar />
-        <div>
+        <div style={{width: '100%'}} >
           <Switch>
             <Route exact path="/product-categories" component={ProductCategories} />
             <Route exact path="/products" component={Products} />

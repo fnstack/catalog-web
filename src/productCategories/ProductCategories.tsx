@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Button } from 'antd';
-import { List } from 'antd';
+import { Button, List } from 'antd';
 const data = [
   'Nom:',
   'Description:',
@@ -16,28 +15,28 @@ class ProductCategories extends React.Component {
             <Button type="primary">Ajouter</Button>
           </div>
           <div>
-    
+
     <List
-      
-      
+
+
       bordered
       dataSource={data}
       renderItem={item => (<List.Item>{item}</List.Item>)}
     />
-    
+
     <List
-      
-      
-      
+
+
+
       bordered
       dataSource={data}
       renderItem={item => (<List.Item>{item}</List.Item>)}
     />
-    
+
     <List
-      
-      
-      
+
+
+
       bordered
       dataSource={data}
       renderItem={item => (<List.Item>{item}</List.Item>)}
