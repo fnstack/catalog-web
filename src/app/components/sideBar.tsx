@@ -50,7 +50,7 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
             <Icon type="tag-o" /> <span>Product Brands</span>
           </Menu.Item>
           <Menu.Item key="3">
-            <Icon type="appstore-o" /> <span>Products</span>
+          <Link to="/products"><Icon type="appstore-o" /> <span>Products</span></Link>
           </Menu.Item>
         </Menu>
       </div>
