@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, Row, Col } from 'antd';
+import { AddNewProduct } from '../components';
 
 class Products extends React.Component {
   public render() {
@@ -8,9 +9,9 @@ class Products extends React.Component {
         <Row>
           <Col span={24}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h1>Produits</h1>
-              <div>
-                <Button type="primary">Ajouter</Button>
+              <h1 style={{marginLeft:10}}>Produits</h1>
+              <div>                
+                <AddNewProduct />
               </div>
             </div>
             <hr />
