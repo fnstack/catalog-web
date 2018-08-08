@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Modal, Button, Input, Form, Col, Row } from 'antd';
+import { Modal, Button, Input, Form } from 'antd';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
 interface AddNewProductState {
-    visible:boolean;
+    visible:boolean;    
 }
 
 class AddNewProduct extends React.Component<AddNewProductState> {
@@ -19,15 +19,13 @@ class AddNewProduct extends React.Component<AddNewProductState> {
         });
       }
     
-    handleOk = (e) => {
-        console.log(e);
+    handleOk = () => {
         this.setState({
           visible: false,
         });
       }
 
-    handleCancel = (e) => {
-    console.log(e);
+    handleCancel = () => {
     this.setState({
       visible: false,
     });
@@ -35,8 +33,6 @@ class AddNewProduct extends React.Component<AddNewProductState> {
     public render() {
         return(
             <div>
-              <Row>
-               <Col span={24}>
                 <Button style={{marginRight:10}} type="primary" onClick={this.showModal}>Ajouter</Button>
                 <Modal
                 title="Ajouter un produit"
@@ -44,21 +40,22 @@ class AddNewProduct extends React.Component<AddNewProductState> {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 >
-                <Form>
-                    <FormItem label="Nom :">
-                        <Input placeholder="Nom du produit"/>
+                <Form onSubmit={}>
+                    <FormItem label="Nom :"style={{marginTop:-20}}>
+                        <Input placeholder="Nom du produit" name='name'/>
                     </FormItem>
-                    <FormItem label="Catégorie :">
-                        <Input placeholder="Catégorie du produit"/>
+                    <FormItem label="Catégorie :" style={{marginTop:-20}}>
+                        <Input placeholder="Catégorie du produit" name="category"/>
                     </FormItem>
-                    <FormItem label="Description :">
+                    <FormItem label="Marque :" style={{marginTop:-20}}>
+                        <Input placeholder="Marque du produit" name="brand"/>
+                    </FormItem>
+                    <FormItem label="Description :" style={{marginTop:-20, marginBottom:-10}}>
                         <TextArea placeholder="Description du produit" 
-                        autosize={{ minRows: 2, maxRows: 6 }} />
+                        autosize={{ minRows: 2, maxRows: 6 }} name="description"/>
                     </FormItem>
                  </Form> 
-                </Modal>
-               </Col>
-              </Row>
+                </Modal>               
             </div>
         );
     }
