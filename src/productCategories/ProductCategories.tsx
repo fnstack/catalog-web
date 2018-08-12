@@ -1,48 +1,59 @@
 import * as React from 'react';
-import { Button, List } from 'antd';
-const data = [
-  'Nom:',
-  'Description:',
-];
+import { Button, Row, Col } from 'antd';
+import { Query } from 'react-apollo';
+import { productcategories } from 'productCategories/queries';
 
 class ProductCategories extends React.Component {
   public render() {
-    console.log('page-loaded');
+    // console.log('page-loaded');
     return (
-      <div>
-        <h1>Catégorie des produits</h1>
-          <div>
-            <Button type="primary">Ajouter</Button>
-          </div>
-          <div>
+      <Query query={productcategories}>
+      {({ loading, error, data }) => {
+          if (loading) {
+            return 'Loading...';
+          } else {
+            console.log('data', data);
+          }
 
-    <List
+          if (error) {
+            return <span>Erreur: {error.message}</span>;
+          }
 
+          let results = [];
 
-      bordered
-      dataSource={data}
-      renderItem={item => (<List.Item>{item}</List.Item>)}
-    />
+          if (Array.isArray(data.productCategories)) {
+            results = data.productCategories.map(category => (
+              <React.Fragment>
+              <div style={{marginLeft:10}}>
+                <b>Nom : {category.name}</b>
+                <br/>
+                <b>Description : {category.description} </b>
+                <br/>
+                <Button type="primary">Renomer</Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button type="primary">Supprimer</Button>
+              </div>
+              <hr/>
+              </React.Fragment>
+            ));
+          }
 
-    <List
-
-
-
-      bordered
-      dataSource={data}
-      renderItem={item => (<List.Item>{item}</List.Item>)}
-    />
-
-    <List
-
-
-
-      bordered
-      dataSource={data}
-      renderItem={item => (<List.Item>{item}</List.Item>)}
-    />
-  </div>
-      </div>
+          return(
+            <div>
+              <Row>
+                <Col span={24}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h1>Categories des produits </h1>
+                    <Button type="primary">Ajouter</Button>
+                  </div>
+                  <hr />
+                  {results}
+                </Col>
+              </Row>
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }
