@@ -8,7 +8,11 @@ interface AddNewProductState {
     visible:boolean;    
 }
 
-class AddNewProduct extends React.Component<AddNewProductState> {
+interface AddNewProductProps{    
+    onSubmit:() => void;    
+}
+
+class AddNewProduct extends React.Component<AddNewProductProps,AddNewProductState> {
     public state: AddNewProductState = {
         visible:false
     };
@@ -40,7 +44,7 @@ class AddNewProduct extends React.Component<AddNewProductState> {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 >
-                <Form onSubmit={}>
+                <Form onSubmit={this.props.onSubmit}>
                     <FormItem label="Nom :"style={{marginTop:-20}}>
                         <Input placeholder="Nom du produit" name='name'/>
                     </FormItem>
