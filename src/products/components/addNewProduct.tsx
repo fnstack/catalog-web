@@ -42,6 +42,8 @@ class AddNewProduct extends React.Component<AddNewProductProps,AddNewProductStat
                 title="Ajouter un produit"
                 visible={this.state.visible}
                 onOk={this.handleOk}
+                okText="Enregistrer"
+                cancelText="Annuler"
                 onCancel={this.handleCancel}
                 >
                 <Form onSubmit={this.props.onSubmit}>
