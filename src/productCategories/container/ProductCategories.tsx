@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Row, Col } from 'antd';
 import { Query } from 'react-apollo';
 import { productcategories } from 'productCategories/queries';
+import { Addnewproductcategorie } from '../compnents';
 
 class ProductCategories extends React.Component {
   public render() {
@@ -44,7 +45,8 @@ class ProductCategories extends React.Component {
                 <Col span={24}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h1>Categories des produits </h1>
-                    <Button type="primary">Ajouter</Button>
+                    
+                    <Addnewproductcategorie/>
                   </div>
                   <hr />
                   {results}
