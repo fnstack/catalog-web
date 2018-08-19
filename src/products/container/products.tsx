@@ -5,6 +5,11 @@ import { Query } from 'react-apollo';
 import { products } from '../queries';
 
 class Products extends React.Component {
+
+  private handleSumit = () => {
+    console.error("Not implemented");
+  }
+
   public render() {
     return (
       <Query query={products}>
@@ -53,7 +58,7 @@ class Products extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h1 style={{marginLeft:10}}>Produits</h1>
               <div>                
-                <AddNewProduct />
+                <AddNewProduct onSubmit={this.handleSumit} />
               </div>
             </div> 
             <hr />
