@@ -18,7 +18,7 @@ class AddNewProduct extends React.Component<AddNewProductState> {
           visible: true,
         });
       }
-    
+
     handleOk = (e) => {
         console.log(e);
         this.setState({
@@ -52,10 +52,10 @@ class AddNewProduct extends React.Component<AddNewProductState> {
                         <Input placeholder="Catégorie du produit"/>
                     </FormItem>
                     <FormItem label="Description :">
-                        <TextArea placeholder="Description du produit" 
+                        <TextArea placeholder="Description du produit"
                         autosize={{ minRows: 2, maxRows: 6 }} />
                     </FormItem>
-                 </Form> 
+                 </Form>
                 </Modal>
                </Col>
               </Row>
@@ -64,4 +64,4 @@ class AddNewProduct extends React.Component<AddNewProductState> {
     }
 }
 
-export { AddNewProduct}
+export { AddNewProduct };
