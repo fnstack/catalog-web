@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Row, Col } from 'antd';
+import { Button, Row, Col, Modal } from 'antd';
 import { AddNewProduct } from '../components';
 import { Query } from 'react-apollo';
 import { products } from '../queries';
@@ -8,7 +8,7 @@ class Products extends React.Component {
  
   public render() {
     return (
-      <Query query={products}>
+      <Query key="getProducts" query={products}>
         {({loading, error, data}) => {
           if (loading) {
             return 'Loading...';
@@ -17,8 +17,13 @@ class Products extends React.Component {
             console.log('data', data);
           }
           if (error) {
-            return <span>Erreur: {error.message}</span>;
-          }
+            return (
+              Modal.error(
+                { title:"Erreur",
+                  content:<span>Erreur: {error.message}</span>}
+              )              
+            )
+          };
 
           let results = [];
 
@@ -30,9 +35,9 @@ class Products extends React.Component {
               <br />
               <b>Description: {product.description}</b>
               <br />
-              <b>Catégorie:</b>
+              <b>Catégorie: {product.category.name}</b>
               <br />
-              <b>Marque:</b>
+              <b>Marque: {product.brand.name}</b>
               <br />
               <Button style={{ marginTop: 5 }} type="primary">
                 Renommer
@@ -54,13 +59,15 @@ class Products extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h1 style={{marginLeft:10}}>Produits</h1>
               <div>                
-                <AddNewProduct />
+                <AddNewProduct
+                categories={data.productCategories}
+                brands={data.productBrands} />
               </div>
             </div> 
             <hr />
             {results}           
           </Col>
-        </Row>
+        </Row>        
       </div>
        );
       }}

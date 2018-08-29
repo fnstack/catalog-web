@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Modal, Button, Input, Form } from 'antd';
+import { Modal, Button, Input, Form, AutoComplete } from 'antd';
 import { Mutation } from 'react-apollo';
 import { createProduct } from '../mutations';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
+const Option = AutoComplete.Option;
 
 interface AddNewProductState {
   visible: boolean;
@@ -17,11 +18,9 @@ interface AddNewProductState {
 }
 
 interface AddNewProductProps {
-  onSubmit: (
-    value: {
-      variables: any;
-    }
-  ) => void;
+  categories: any[];
+  brands: any[];
+  
 }
 
 class AddNewProduct extends React.Component<AddNewProductProps, AddNewProductState> {
@@ -32,7 +31,7 @@ class AddNewProduct extends React.Component<AddNewProductProps, AddNewProductSta
     category: undefined,
     brandId: undefined,
     brand: undefined,
-    description: ''
+    description: undefined
   };
 
   showModal = () => {
@@ -48,17 +47,28 @@ class AddNewProduct extends React.Component<AddNewProductProps, AddNewProductSta
   };
 
    private handleInputName = e => {
-    const name = e.target.name;
     const value = e.target.value;
     // @ts-ignore useless error
-    this.setState({ [name]: value });
+    this.setState({ name: value });
+  };
+  private handleInputDescription = e => {
+    const value = e.target.value;
+    // @ts-ignore useless error
+    this.setState({ description: value });
+  };
+  private handleSelectCategory = (id) => {
+  this.setState({categoryId: id})
   };
 
+  private handleSelectBrand = (id) => {
+    this.setState({brandId: id})
+    };
   
   public render() {
+    const { categories, brands } = this.props;
     return (
       <div>
-        <Button style={{ marginRight: 10 }} type="primary" onClick={this.showModal}>
+        <Button style={{ marginRight: 20 }} type="primary" onClick={this.showModal}>
           Ajouter
         </Button>
         <Mutation key="createProduct" mutation={createProduct}>
@@ -66,11 +76,17 @@ class AddNewProduct extends React.Component<AddNewProductProps, AddNewProductSta
 
             const onSubmit = () => {
                 const { name, categoryId, brandId, description } = this.state;
-                createProduct({ variables: { name, description } });
+                createProduct({ variables: { name, categoryId, brandId,  description } });
                 this.setState({
                     visible: false
                 });
             };
+
+            const categoriesOption=categories.map(c =>
+            <Option key={c.id}>{c.name}</Option>
+            )
+            const brandsOption=brands.map(b =>
+            <Option key={b.id}>{b.name}</Option>)
 
             return (
               <Modal
@@ -86,21 +102,36 @@ class AddNewProduct extends React.Component<AddNewProductProps, AddNewProductSta
                     <Input 
                     placeholder="Nom du produit" 
                     name="name" 
-                    onChange={this.handleInputName}
-                    value={name} 
+                    onChange={this.handleInputName}                    
                     />
                   </FormItem>
                   <FormItem label="Catégorie :" style={{ marginTop: -20 }}>
-                    <Input placeholder="Catégorie du produit" name="category" />
+                    <AutoComplete                      
+                      style={{ width: 200 }}
+                      dataSource={categories}
+                      placeholder="Catégorie du produit"
+                      onSelect={this.handleSelectCategory}
+                    >
+                      {categoriesOption}                      
+                    </AutoComplete>
                   </FormItem>
                   <FormItem label="Marque :" style={{ marginTop: -20 }}>
-                    <Input placeholder="Marque du produit" name="brand" />
+                    <AutoComplete
+                      style={{ width: 200 }}
+                      dataSource={brands}
+                      placeholder="Marque du produit"
+                      onSelect={this.handleSelectBrand} >
+
+                      {brandsOption}    
+                      
+                    </AutoComplete>
                   </FormItem>
                   <FormItem label="Description :" style={{ marginTop: -20, marginBottom: -10 }}>
                     <TextArea
                       placeholder="Description du produit"
                       autosize={{ minRows: 2, maxRows: 6 }}
                       name="description"
+                      onChange={this.handleInputDescription}
                     />
                   </FormItem>
                 </Form>

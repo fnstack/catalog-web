@@ -6,7 +6,16 @@ export const products: DocumentNode = gql`
       id
       name
       description
-      
+      category {name}
+      brand{name}
+    } 
+    productBrands {
+      id
+      name
     }
+    productCategories {
+      id
+      name
+    }           
   }
 `;
