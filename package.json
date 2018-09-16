@@ -11,7 +11,8 @@
     "clean-dist": "rimraf ./dist",
     "prebuild": "npm-run-all clean-dist lint",
     "build": "webpack --config webpack.prod.js --mode production",
-    "postbuild": "node tools/distServer.js"
+    "postbuild": "node tools/distServer.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
